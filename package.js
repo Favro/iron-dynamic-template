@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'compat:dynamic-template',
+  name: 'iron:dynamic-template',
   summary: 'Dynamically create and update templates and their data contexts.',
   version: '2.0.0',
   git: 'https://github.com/meteor-compat/iron-dynamic-template'
@@ -8,13 +8,13 @@ Package.describe({
 Package.onUse(function (api) {
   api.versionsFrom('METEOR@3.4');
 
-  api.use('blaze@3.0.0');
+  api.use('blaze');
   api.use('underscore');
-  api.use('ui@2.0.0');
-  api.use('jquery@1.11.9 || 3.0.1');
+  api.use('ui');
+  api.use('jquery');
   api.use('tracker');
   api.use('reactive-var');
-  api.use('templating@1.4.4');
+  api.use('templating');
   api.use('random');
 
   api.use('iron:core@1.0.11');
