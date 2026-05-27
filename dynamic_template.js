@@ -458,13 +458,27 @@ DynamicTemplate.getParentDataContext = function (view) {
   return DynamicTemplate.getDataContext(view && view.parentView);
 };
 
+var getDataVarValue = function (view) {
+  var data = view.dataVar.get();
+
+  if (data && typeof data === 'object') {
+    if (_.has(data, 'value'))
+      return data.value;
+
+    if (_.has(data, 'error'))
+      return undefined;
+  }
+
+  return data;
+};
+
 /**
  * Get the first data context that is not inclusion arguments.
  */
 DynamicTemplate.getDataContext = function (view) {
   while (view) {
     if (view.name === 'with' && !view.__isTemplateWith)
-      return view.dataVar.get();
+      return getDataVarValue(view);
     else
       view = view.parentView;
   }
@@ -490,7 +504,7 @@ DynamicTemplate.getInclusionArguments = function (view) {
     return null;
 
   if (parent.__isTemplateWith)
-    return parent.dataVar.get();
+    return getDataVarValue(parent);
 
   return null;
 };
